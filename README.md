@@ -5,7 +5,7 @@
 4. Скачивайте все что нужно
 5. Далее вам стоит прописать вот эти команды:
 
-   1. pip install -r requirements.txt
+   1. pip install fastapi uvicorn sqlalchemy passlib bcrypt==4.0.1 python-jose email-validator python-dotenv
    2. python -m app.init_db
    3. uvicorn app.main:app --reload
    
