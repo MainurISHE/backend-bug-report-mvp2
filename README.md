@@ -5,9 +5,9 @@
 4. Скачивайте все что нужно
 5. Далее вам стоит прописать вот эти команды:
 
-   pip install -r requirements.txt
-   python -m app.init_db
-   uvicorn app.main:app --reload
+   1. pip install -r requirements.txt
+   2. python -m app.init_db
+   3. uvicorn app.main:app --reload
    
 Приятного пользования!
 (также что бы все работало правильно, рекомендуется удалить все папки с названием "__pycache__")
