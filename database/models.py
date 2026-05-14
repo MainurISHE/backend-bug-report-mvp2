@@ -9,17 +9,28 @@ from app.database.database import Base
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True
+    )
 
     username = Column(String)
-    email = Column(String)
+
+    email = Column(
+        String,
+        unique=True
+    )
+
     password = Column(String)
 
 
 class BugReport(Base):
     __tablename__ = "bug_reports"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True
+    )
 
     email = Column(String)
 

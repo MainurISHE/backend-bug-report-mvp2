@@ -4,11 +4,12 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from app.database.database import SessionLocal
-from app.database.models import User
 
 from app.schemas.auth import RegisterSchema
+from app.schemas.auth import LoginSchema
 
-from app.utils.security import hash_password
+from app.services.auth_service import register_user
+from app.services.auth_service import login_user
 
 router = APIRouter(
     prefix="/auth",
@@ -31,19 +32,21 @@ def register(
     data: RegisterSchema,
     db: Session = Depends(get_db)
 ):
-    user = User(
-        username=data.username,
-        email=data.email,
-        password=hash_password(data.password)
+    return register_user(
+        db,
+        data.username,
+        data.email,
+        data.password
     )
 
-    db.add(user)
 
-    db.commit()
-
-    db.refresh(user)
-
-    return {
-        "message": "User created",
-        "user_id": user.id
-    }
+@router.post("/login")
+def login(
+    data: LoginSchema,
+    db: Session = Depends(get_db)
+):
+    return login_user(
+        db,
+        data.email,
+        data.password
+    )
